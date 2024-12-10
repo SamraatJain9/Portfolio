@@ -14,10 +14,6 @@ def about():
 def company():
     return render_template('companies.html')
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 @app.route('/projects')
 def project():
     return render_template('projects.html')
@@ -26,7 +22,7 @@ def project():
 def other():
     return render_template('nonprofits.html')
 
-@app.route('/reserach')
+@app.route('/research')
 def research():
     return render_template('research.html')
 

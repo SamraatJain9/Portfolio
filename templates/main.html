@@ -1,6 +1,38 @@
 <html>
     <head>
         <title>Name [PORTFOLIO]</title>
+        <style>
+            /* Style for the dialog box */
+            dialog {
+                border: none;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                font-family: Arial, sans-serif;
+            }
+
+            dialog::backdrop {
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            .close-button {
+                float: right;
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .popup-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            .popup-content {
+                margin-bottom: 10px;
+            }
+        </style>
     </head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +47,56 @@
                 <li><a href="/companies">Companies</a></li>
                 <li><a href="https://www.linkedin.com/in/samraat-jain/">LinkedIn</a></li>
                 <li><a href="https://github.com/SamraatJain9?tab=repositories">GitHub</a></li>
-                <li><a href="/contact">Collaborate/Contact</a></li> <!-- Pop up dialog -->
+                <li><a href="#" id="collaborate-link">Collaborate/Contact</a></li> <!-- Pop up dialog -->
                 <li><a href="/projects">Current Running Projects</a></li>
                 <li><a href="/nonprofits">Other/Non-profit/Charity</a></li>
                 <li><a href="/research">Research</a></li>
-                <li><a href="">Books</a></li> <!-- Pop up Dialog -->
-                <li><a href="">Full CV</a></li> <!-- PDF Link -->
+                <li><a href="#" id="books-link">Books</a></li> <!-- Pop up Dialog -->
+                <li><a href="{{ url_for('static', filename='CV.pdf') }}" target="_blank" rel="noopener">Full CV</a></li> <!-- PDF Link -->
             </ul>
+
+        <!-- Collaborate/Contact Pop-up -->
+        <dialog id="collaborate-dialog">
+            <button class="close-button" id="close-collaborate">&times;</button>
+            <div class="popup-title">Collaborate/Contact</div>
+            <div class="popup-content">This is where you can add your collaboration or contact details.</div>
+        </dialog>
+
+        <!-- Books Pop-up -->
+        <dialog id="books-dialog">
+            <button class="close-button" id="close-books">&times;</button>
+            <div class="popup-title">Books</div>
+            <div class="popup-content">This is where you can list or showcase books.</div>
+        </dialog>
+
+        <script>
+            // Collaborate Dialog
+            const collaborateLink = document.getElementById('collaborate-link');
+            const collaborateDialog = document.getElementById('collaborate-dialog');
+            const closeCollaborate = document.getElementById('close-collaborate');
+
+            collaborateLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                collaborateDialog.showModal();
+            });
+
+            closeCollaborate.addEventListener('click', () => {
+                collaborateDialog.close();
+            });
+
+            // Books Dialog
+            const booksLink = document.getElementById('books-link');
+            const booksDialog = document.getElementById('books-dialog');
+            const closeBooks = document.getElementById('close-books');
+
+            booksLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                booksDialog.showModal();
+            });
+
+            closeBooks.addEventListener('click', () => {
+                booksDialog.close();
+            });
+        </script>
     </body>    
 </html>
